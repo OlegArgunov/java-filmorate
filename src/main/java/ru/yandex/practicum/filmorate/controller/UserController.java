@@ -14,7 +14,7 @@ import java.util.Map;
 @Slf4j
 public class UserController {
     private Map<Integer, User> users = new HashMap<>();
-    int nextID = 1;
+    private int nextID = 1;
 
     @PostMapping(value = "/users")
     public User create(@RequestBody User user) throws ValidationException {

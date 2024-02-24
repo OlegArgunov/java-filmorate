@@ -14,7 +14,7 @@ import java.util.Map;
 @Slf4j
 public class FilmController {
     private Map<Integer, Film> films = new HashMap<>();
-    int nextID = 1;
+    private int nextID = 1;
 
     @PostMapping(value = "/films")
     public Film create(@RequestBody Film film) throws ValidationException {
