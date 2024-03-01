@@ -3,11 +3,9 @@ package ru.yandex.practicum.filmorate.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import ru.yandex.practicum.filmorate.exceptions.ValidationException;
 import ru.yandex.practicum.filmorate.model.Film;
 import ru.yandex.practicum.filmorate.service.FilmService;
 
-import java.util.Collection;
 import java.util.List;
 
 @RestController
@@ -44,17 +42,19 @@ public class FilmController {
         log.info("Обновлён фильм: '{}'", updatedFilm.getName());
         return updatedFilm;
     }
+
     @PutMapping("/films/{id}/like/{userId}")
     public void addLike(@PathVariable long id, @PathVariable long userId) {
         filmService.addLike(id, userId);
     }
+
     @DeleteMapping("/films/{id}/like/{userId}")
     public void removeLike(@PathVariable long id, @PathVariable long userId) {
         filmService.removeLike(id, userId);
     }
 
     @GetMapping("/films/popular")
-    public List<Film> getBest(@RequestParam (defaultValue = "10") int count) {
+    public List<Film> getBest(@RequestParam(defaultValue = "10") int count) {
         return filmService.getBest(count);
     }
 

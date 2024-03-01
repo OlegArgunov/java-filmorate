@@ -2,16 +2,13 @@ package ru.yandex.practicum.filmorate.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
-import ru.yandex.practicum.filmorate.exceptions.ObjectNotFoundException;
-import ru.yandex.practicum.filmorate.exceptions.ValidationException;
-import ru.yandex.practicum.filmorate.model.Film;
-import ru.yandex.practicum.filmorate.model.User;
-import ru.yandex.practicum.filmorate.storage.film.FilmStorage;
 import ru.yandex.practicum.filmorate.exceptions.CheckException;
+import ru.yandex.practicum.filmorate.exceptions.ObjectNotFoundException;
+import ru.yandex.practicum.filmorate.model.Film;
+import ru.yandex.practicum.filmorate.storage.film.FilmStorage;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -61,16 +58,16 @@ public class FilmService {
 
     public List<Film> getBest(int count) {
         List<Film> bestFilms = new ArrayList<>(getAllFilms());
-        bestFilms.sort((f1,f2) -> {
+        bestFilms.sort((f1, f2) -> {
             if (f2.getRate() > f1.getRate())
                 return 1;
-                else if (f2.getRate() < f1.getRate())
-                    return -1;
-                else
-                    return 0;
+            else if (f2.getRate() < f1.getRate())
+                return -1;
+            else
+                return 0;
 
         });
-        return bestFilms.subList(0,Integer.min(count, bestFilms.size()));
+        return bestFilms.subList(0, Integer.min(count, bestFilms.size()));
     }
 
     private void validate(Film film) {

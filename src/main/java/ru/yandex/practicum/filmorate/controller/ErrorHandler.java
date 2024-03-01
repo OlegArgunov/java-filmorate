@@ -17,11 +17,13 @@ public class ErrorHandler {
     public Map<String, String> handleObjectNotFound(final ObjectNotFoundException e) {
         return Map.of("Error", e.getMessage());
     }
+
     @ExceptionHandler
     @ResponseStatus(HttpStatus.BAD_REQUEST) //400
     public Map<String, String> handleCheckException(final CheckException e) {
         return Map.of("Error", e.getMessage());
     }
+
     @ExceptionHandler
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR) //500
     public Map<String, String> handleOtherException(final OtherException e) {

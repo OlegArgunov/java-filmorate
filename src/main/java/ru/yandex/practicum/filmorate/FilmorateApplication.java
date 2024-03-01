@@ -8,11 +8,11 @@ import ru.yandex.practicum.filmorate.controller.UserController;
 
 @SpringBootApplication
 public class FilmorateApplication {
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		ApplicationContext context = SpringApplication.run(FilmorateApplication.class, args);
-		FilmController filmController = context.getBean(FilmController.class);
-		UserController userController = context.getBean(UserController.class);
-	}
+        ApplicationContext context = SpringApplication.run(FilmorateApplication.class, args);
+        FilmController filmController = context.getBean(FilmController.class);
+        UserController userController = context.getBean(UserController.class);
+    }
 
 }
