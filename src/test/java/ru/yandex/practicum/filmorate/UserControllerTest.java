@@ -6,6 +6,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import ru.yandex.practicum.filmorate.controller.UserController;
 import ru.yandex.practicum.filmorate.exceptions.ValidationException;
 import ru.yandex.practicum.filmorate.model.User;
+import ru.yandex.practicum.filmorate.service.UserService;
+import ru.yandex.practicum.filmorate.storage.user.InMemoryUserStorage;
 
 import java.time.LocalDate;
 
@@ -17,15 +19,27 @@ public class UserControllerTest {
 
     @Test
     void checkCreateUser() throws ValidationException {
-        User user = new User(1, "asd@ya.ru", "login", "Name", LocalDate.now());
-        UserController userController = new UserController();
+        User user = User.builder()
+                .id(1)
+                .name("Name")
+                .login("Login")
+                .email("asd@ya.ru")
+                .birthday(LocalDate.now())
+                .build();
+        UserController userController = new UserController(new UserService(new InMemoryUserStorage()));
         assertEquals(user, userController.create(user));
     }
 
     @Test
     void checkUserLogin() {
-        User user = new User(1, "asd@ya.ru", "log in", "Name", LocalDate.now());
-        UserController userController = new UserController();
+        UserController userController = new UserController(new UserService(new InMemoryUserStorage()));
+        User user = User.builder()
+                .id(1)
+                .name("Name")
+                .login("Log in")
+                .email("asd@ya.ru")
+                .birthday(LocalDate.now())
+                .build();
         final ValidationException exception = assertThrows(
                 ValidationException.class,
                 new Executable() {
