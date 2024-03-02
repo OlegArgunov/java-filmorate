@@ -1,25 +1,33 @@
 package ru.yandex.practicum.filmorate.model;
 
+import lombok.Builder;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.Set;
 
-/**
- * Film.
- */
+
 @Data
+@Builder
 public class User {
-    private int id;
+    private long id;
     private final String email;
     private final String login;
     private String name;
     private final LocalDate birthday;
+    private Set<Long> friends;
 
-    public User(int id, String email, String login, String name, LocalDate birthday) {
-        this.id = id;
-        this.email = email;
-        this.login = login;
-        this.name = name;
-        this.birthday = birthday;
+    public void addFriend(Long id) {
+        friends.add(id);
     }
+
+    public void removeFriend(Long id) {
+        friends.remove(id);
+    }
+
+    public boolean isFriend(Long id) {
+        return friends.contains(id);
+    }
+
+
 }
