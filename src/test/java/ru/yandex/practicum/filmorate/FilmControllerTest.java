@@ -5,7 +5,6 @@ import org.junit.jupiter.api.function.Executable;
 import org.springframework.boot.test.context.SpringBootTest;
 import ru.yandex.practicum.filmorate.controller.FilmController;
 import ru.yandex.practicum.filmorate.exceptions.CheckException;
-import ru.yandex.practicum.filmorate.exceptions.ValidationException;
 import ru.yandex.practicum.filmorate.model.Film;
 import ru.yandex.practicum.filmorate.service.FilmService;
 import ru.yandex.practicum.filmorate.storage.film.InMemoryFilmStorage;
@@ -19,12 +18,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @SpringBootTest
 class FilmControllerTest {
 
-    @Test
-    void contextLoads() {
-    }
 
     @Test
-    void checkCreateFile() throws ValidationException {
+    void checkCreateFilm() {
         Film film = Film.builder()
                 .id(1)
                 .name("Test")
